@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 //import responsive.Bounce.Ball;
 
 import java.lang.Math.*;
@@ -11,7 +12,7 @@ public class Maxwell extends JFrame
 	Ball[] balls;
 	int ballCount;
 	
-	JFrame window = new JFrame("Maxwell's Demon");;
+	JFrame window = new JFrame("Maxwell's Demon");
 	
     JPanel topPanel;
     JLabel tempLeft;
@@ -20,6 +21,8 @@ public class Maxwell extends JFrame
     JPanel midPanel;
     //GameDisplay game;
     paintDoor game;
+    
+    Ball ball = new Ball(this);
     
     JPanel bottomPanel;
     JButton addButton = new JButton("add");
@@ -79,6 +82,9 @@ public class Maxwell extends JFrame
 		resetButton.setActionCommand("reset");
 		addButton.setActionCommand("add");
     	
+		//Timer tick = new Timer(100, new Animator());
+		//tick.start();
+		
 		//mouseListener to open/close door
 		window.addMouseListener(new MouseAdapter()
 		{
@@ -136,98 +142,14 @@ public class Maxwell extends JFrame
         }    
     }//END Maxwell()
     
-    public class Ball 
-    {
 
-		int x, y;
-		int vx, vy;
-		double oldx, oldy;
-		
-		public Ball() 
-		{
-			x = (int) (Math.random() * 400 + 100); // [100, 500)
-			y = (int) (Math.random() * 400 + 100);
 
-			vx = (int) (Math.random() * 100 - 50); // [-50, 50)
-			vy = (int) (Math.random() * 100 - 50);
-		}
-
-		public Ball(int xClick, int yClick) 
-		{
-			x = xClick;
-			y = yClick;
-
-			vx = (int) (Math.random() * 100 - 50); // [-50, 50)
-			vy = (int) (Math.random() * 100 - 50);
-		}
-		
-		public void move(double delta) 
-		{
-			oldx = x;
-			oldy = y;
-			x += vx * delta;
-			y += vy * delta;
-			stayOnScreen();
-		}
-
-		public void stayOnScreen() 
-		{
-			if (game.isDoorThere())
-			{
-				
-			}
-			// Check bounces off each edge of screen
-			if (x < 0)
-				vx *= -1;
-			if (x > 550)
-				vx *= -1;
-			if (y < 0)
-				vy *= -1;
-			if (y > 550)
-				vy *= -1;
-		}
-		
-		
-		
-    }
-    
-    public class redBall extends Ball
-    {
-    	redBall() {
-            super();
-        }
-
-        redBall(int x, int y) {
-            super(x, y);
-        }
-
-        public void drawMe ( Graphics g )
-        {
-            g.setColor( Color.RED );
-            g.fillOval( (int)(x-2), (int)(y-2), 5, 5 );
-        }
-    }
-    
-    public class blueBall extends Ball
-    {
-    	blueBall() {
-            super();
-        }
-
-        blueBall(int x, int y) {
-            super(x, y);
-        }
-
-        public void drawMe ( Graphics g )
-        {
-            g.setColor( Color.RED );
-            g.fillOval( (int)(x-2), (int)(y-2), 5, 5 );
-        }
-    }
     
     public static void main(String[] args) 
     {
 		new Maxwell();
+		//int resolution = Toolkit.getDefaultToolkit().getScreenResolution();
+		//System.out.println("the !!!!! is : " + resolution);
 	}
 }
 
