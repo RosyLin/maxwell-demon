@@ -1,10 +1,16 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+//import responsive.Bounce.Ball;
+
 import java.lang.Math.*;
 
 public class Maxwell extends JFrame
 {
+	Ball[] balls;
+	int ballCount;
+	
 	JFrame window = new JFrame("Maxwell's Demon");;
 	
     JPanel topPanel;
@@ -35,8 +41,6 @@ public class Maxwell extends JFrame
 		}//END void actionPerformed
 		
     }//END class ButtonListener
- 
-    
     
     public Maxwell() 
     {
@@ -47,7 +51,7 @@ public class Maxwell extends JFrame
     	topPanel = new JPanel();
     	topPanel.setBackground(Color.orange);
     	tempLeft = new JLabel("Left Temp: ",SwingConstants.LEFT);
-    	tempRight = new JLabel("Right Temp: ",SwingConstants.LEFT);
+    	tempRight = new JLabel("Right Temp: ",SwingConstants.RIGHT);
     	
     	window.add(topPanel, BorderLayout.NORTH);
     	topPanel.setLayout(new GridLayout(1,2));
@@ -124,6 +128,30 @@ public class Maxwell extends JFrame
                 g.fillRect(362, 150, 10, 125);
             }
         }    
+    }//END Maxwell()
+    
+    public class Ball 
+    {
+
+		int x, y;
+		int vx, vy;
+		double oldx, oldy;
+		
+		public Ball() {
+			x = (int) (Math.random() * 400 + 100); // [100, 500)
+			y = (int) (Math.random() * 400 + 100);
+
+			vx = (int) (Math.random() * 100 - 50); // [-50, 50)
+			vy = (int) (Math.random() * 100 - 50);
+		}
+
+		public Ball(int xClick, int yClick) {
+			x = xClick;
+			y = yClick;
+
+			vx = (int) (Math.random() * 100 - 50); // [-50, 50)
+			vy = (int) (Math.random() * 100 - 50);
+		}
     }
     
     
