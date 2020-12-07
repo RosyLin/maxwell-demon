@@ -15,7 +15,7 @@ public class Maxwell extends JFrame
 	
 	public class Ball 
     {
-    	int x, y;
+    	float x, y;
     	int vx, vy;
     	double oldx, oldy;
     				
@@ -63,6 +63,7 @@ public class Maxwell extends JFrame
         		if (y > 410)
         			vy *= -1;
         		
+        		
      			if ((x > 352) && (x < 377))
     				vx *= -1;
     		}
@@ -80,7 +81,10 @@ public class Maxwell extends JFrame
      			if ((x > 352) && (x < 382))
      			{
      				if ((y < 150) || (y > 270))
+     				{
      					vx *= -1;
+     					vy *= -1;
+     				}
      			}
     		}
     	}
@@ -92,10 +96,23 @@ public class Maxwell extends JFrame
     	redBall() 
     	{
             super();
+            vx = (int) (Math.random() * 113 + 226);
+    		vy = (int) (Math.random() * 113 + 226);
+    		
+    		while (Math.pow(vx, 2) + Math.pow(vy, 2) > Math.pow(339, 2))
+    		{
+    			vx = (int) (Math.random() * 113 + 226);
+    			vy = (int) (Math.random() * 113 + 226);
+    		}
         }
 
         redBall(int x, int y) {
             super(x, y);
+            while (Math.pow(vx, 2) + Math.pow(vy, 2) > Math.pow(339, 2))
+    		{
+    			vx = (int) (Math.random() * 113 + 226);
+    			vy = (int) (Math.random() * 113 + 226);
+    		}
         }
 
         public void drawMe ( Graphics g )
@@ -109,10 +126,20 @@ public class Maxwell extends JFrame
     {
     	blueBall() {
             super();
+            while (Math.pow(vx, 2) + Math.pow(vy, 2) > Math.pow(226, 2))
+    		{
+    			vx = (int) (Math.random() * 113 + 113);
+    			vy = (int) (Math.random() * 113 + 113);
+    		}
         }
 
         blueBall(int x, int y) {
             super(x, y);
+            while (Math.pow(vx, 2) + Math.pow(vy, 2) > Math.pow(226, 2))
+    		{
+    			vx = (int) (Math.random() * 113 + 113); 
+    			vy = (int) (Math.random() * 113 + 113);
+    		}
         }
 
         public void drawMe ( Graphics g )
@@ -141,8 +168,7 @@ public class Maxwell extends JFrame
     {
 		for (int i = 0; i < redCount; i++) 
 		{
-			redBalls[i].move(6*delta);
-			//redBalls[i].drawMe();
+			redBalls[i].move(4*delta);
 		}
 		for (int i = 0; i < blueCount; i++) 
 		{
@@ -194,7 +220,13 @@ public class Maxwell extends JFrame
     	return temperatures;
     }
 
-
+    public void setTemp()
+    {
+    	double[] temperatures = getTemp();
+    	tempLeft.setText(temperatures[0]+" degree");
+    	tempRight.setText(temperatures[1]+" degree");
+    }
+    
 	JFrame window = new JFrame("Maxwell's Demon");
 	
     JPanel topPanel;
@@ -215,11 +247,9 @@ public class Maxwell extends JFrame
     	//create panels and buttons
     	topPanel = new JPanel();
     	topPanel.setBackground(Color.orange);
-    	//topPanel.setPreferredSize(new Dimension(700,50));
     	tempLeft = new JLabel("Left Temp: ",SwingConstants.LEFT);
     	tempRight = new JLabel("Right Temp: ",SwingConstants.RIGHT);
-
-    	topPanel.add(tempLeft);
+       	topPanel.add(tempLeft);
     	topPanel.add(tempRight);
     	topPanel.setLayout(new GridLayout(1,2));
     	window.add(topPanel, BorderLayout.NORTH);
@@ -353,7 +383,9 @@ public class Maxwell extends JFrame
 		public void actionPerformed(ActionEvent e) 
 		{
 			moveBalls();
-
+			//if (ticks==0)
+				setTemp();
+			
 			gamePanel.repaint();
 		}
     }
@@ -361,8 +393,6 @@ public class Maxwell extends JFrame
     public static void main(String[] args) 
     {
 		new Maxwell();
-		//int resolution = Toolkit.getDefaultToolkit().getScreenResolution();
-		//System.out.println("the !!!!! is : " + resolution);
 	}
 }
 
