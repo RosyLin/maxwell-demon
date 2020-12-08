@@ -96,23 +96,15 @@ public class Maxwell extends JFrame
     	redBall() 
     	{
             super();
-            vx = (int) (Math.random() * 113 + 226);
-    		vy = (int) (Math.random() * 113 + 226);
-    		
-    		while (Math.pow(vx, 2) + Math.pow(vy, 2) > Math.pow(339, 2))
-    		{
-    			vx = (int) (Math.random() * 113 + 226);
-    			vy = (int) (Math.random() * 113 + 226);
-    		}
+            //dpi = 144 pixels from toolkit command
+            int v = (int) (Math.random()*(2*144/2.54)+(4*144/2.54));
+            vx = vy = (int)(v/Math.sqrt(2.0));
         }
 
         redBall(int x, int y) {
             super(x, y);
-            while (Math.pow(vx, 2) + Math.pow(vy, 2) > Math.pow(339, 2))
-    		{
-    			vx = (int) (Math.random() * 113 + 226);
-    			vy = (int) (Math.random() * 113 + 226);
-    		}
+            int v = (int) (Math.random()*(2*144/2.54)+(4*144/2.54));
+            vx = vy = (int)(v/Math.sqrt(2.0));
         }
 
         public void drawMe ( Graphics g )
@@ -126,20 +118,14 @@ public class Maxwell extends JFrame
     {
     	blueBall() {
             super();
-            while (Math.pow(vx, 2) + Math.pow(vy, 2) > Math.pow(226, 2))
-    		{
-    			vx = (int) (Math.random() * 113 + 113);
-    			vy = (int) (Math.random() * 113 + 113);
-    		}
+            int v = (int) (Math.random()*(2*144/2.54)+(2*144/2.54));
+            vx = vy = (int)(v/Math.sqrt(2.0));
         }
 
         blueBall(int x, int y) {
             super(x, y);
-            while (Math.pow(vx, 2) + Math.pow(vy, 2) > Math.pow(226, 2))
-    		{
-    			vx = (int) (Math.random() * 113 + 113); 
-    			vy = (int) (Math.random() * 113 + 113);
-    		}
+            int v = (int) (Math.random()*(2*144/2.54)+(2*144/2.54));
+            vx = vy = (int)(v/Math.sqrt(2.0));
         }
 
         public void drawMe ( Graphics g )
@@ -168,11 +154,11 @@ public class Maxwell extends JFrame
     {
 		for (int i = 0; i < redCount; i++) 
 		{
-			redBalls[i].move(4*delta);
+			redBalls[i].move(0.1);
 		}
 		for (int i = 0; i < blueCount; i++) 
 		{
-			blueBalls[i].move(2*delta);
+			blueBalls[i].move(0.1);
 		}
     }
     
