@@ -1,0 +1,7 @@
+This game is a temperature-controlling game where the user can change the temperature of the two rooms displayed by opening and closing the middle door. The room is first filled with two balls--one red and one blue--on each side. The user can use the “add” button to increment the number of balls in both rooms, and also use the “reset” button to reset the game to its initial condition.
+
+The goal of the game is to have all the blue balls on one side of the game (in the left room) and to have all the red balls on the other side of the game (in the right room). As displayed at the top of the game window, the temperatures of the room changes as the balls leave and enter the room. The red balls move faster on average and have higher temperature in comparison to the blue balls.
+
+By pressing down their mouse, the user can control the opening and closing of the middle green door, allowing or prohibiting the passage of the balls in the two rooms. When the door is closed, the balls in each room bounce off the door just like they do with the door; when the door is opened, the balls can enter to the other room through the opening.
+
+The entire game exists in the Maxwell.java file, and the main class can be found at the bottom of the Maxwell class.
