@@ -4,4 +4,4 @@ The goal of the game is to have all the blue balls on one side of the game (in t
 
 By pressing down their mouse, the user can control the opening and closing of the middle green door, allowing or prohibiting the passage of the balls in the two rooms. When the door is closed, the balls in each room bounce off the door just like they do with the door; when the door is opened, the balls can enter to the other room through the opening.
 
-The entire game exists in the Maxwell.java file, and the main class can be found at the bottom of the Maxwell class.
+The entire game exists in the Maxwell.java file, and the main class can be found at the bottom of the Maxwell class. The game can be run by simply hitting "run" on user's IDE, or running it on a server using command line argument.
